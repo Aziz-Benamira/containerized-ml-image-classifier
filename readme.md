@@ -17,4 +17,5 @@ A machine learning application for image classification using MobileNetV3, conta
 
 ## Running Locally with Docker Compose
 cd C:\Users\benam\Downloads\containerized-ml-image-classifier\k8s
+
 start-app.bat
