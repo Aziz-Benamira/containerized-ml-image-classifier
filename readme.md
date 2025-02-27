@@ -122,9 +122,6 @@ cd ..\k8s
 - Implement real-time prediction updates with WebSockets.
 - Enhance UI with advanced JavaScript frameworks (e.g., React).
 
-## Demo
-- **Local Demo**: Run with `start-app.bat` and record a video (portfolio-ready).
-
 
 ---
 
