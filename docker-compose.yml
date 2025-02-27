@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  web-app:
+    image: web-app-service
+    build: ./web-app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - ml-service
+      - db
+    volumes:
+      - ./web-app/uploads:/app/uploads
+    environment:
+      - DB_HOST=db
+      - DB_NAME=classifier
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - DB_PORT=5432
+
+  ml-service:
+    image: ml-model-service
+    build: ./Ml-model 
+    ports:
+      - "5001:5001"  # Optional, for testing
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=classifier
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # Optional, for local access
+
+volumes:
+  db-data:

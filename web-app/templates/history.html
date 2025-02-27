@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Classification History</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            min-height: 100vh;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #3498db;
+            color: white;
+        }
+        tr {
+            transition: background 0.3s ease;
+            animation: fadeIn 0.5s ease-in;
+        }
+        tr:hover {
+            background: #f5f6fa;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        img {
+            width: 150px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        a {
+            display: inline-block;
+            color: #3498db;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #2980b9;
+        }
+        .loading {
+            display: none;
+            font-size: 18px;
+            color: #2c3e50;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loading = document.createElement("div");
+            loading.className = "loading";
+            loading.innerText = "Loading history...";
+            document.body.insertBefore(loading, document.querySelector(".container"));
+            loading.style.display = "block";
+            setTimeout(() => {
+                loading.style.display = "none";
+            }, 500); // Simulate loading delay
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Classification History</h1>
+        {% if history %}
+            <table>
+                <tr>
+                    <th>Image</th>
+                    <th>Predictions</th>
+                </tr>
+                {% for item in history %}
+                    <tr>
+                        <td>
+                            <img src="{{ url_for('uploaded_file', filename=item.image_filename) }}" alt="{{ item.image_filename }}">
+                            <br>{{ item.image_filename }}
+                        </td>
+                        <td>
+                            <ul>
+                            {% for label, prob in item.predictions %}
+                                <li>{{ label }}: {{ "%.2f"|format(prob * 100) }}%</li>
+                            {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No classifications found.</p>
+        {% endif %}
+        <br>
+        <a href="/">Upload another image</a>
+    </div>
+</body>
+</html>
