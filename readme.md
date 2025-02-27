@@ -2,7 +2,11 @@
 
 A cutting-edge machine learning application that classifies images using MobileNetV3, packaged with Docker for seamless containerization and orchestrated with Kubernetes for robust deployment. This project showcases a full-stack ML pipeline—from model inference to a user-friendly web interface—built with modern DevOps practices.
 
-![Demo Screenshot](https://via.placeholder.com/800x400.png?text=Demo+Screenshot) <!-- Replace with actual screenshot link -->
+<p align="center">
+  <img src="demo1.png" width="30%" />
+  <img src="demo2.png" width="30%" />
+  <img src="demo3.png" width="30%" />
+</p>
 
 ## Overview
 
