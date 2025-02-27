@@ -97,7 +97,7 @@ For a production-like setup with Minikube:
 #### Restarting After Shutdown
 Use the provided script:
 ```bash
-cd C:\Users\benam\Downloads\containerized-ml-image-classifier\k8s
+cd ..\k8s
 .\start-app.bat
 ```
 - Starts Minikube, loads images, and provides the URL without redeploying (assuming cluster state persists).
